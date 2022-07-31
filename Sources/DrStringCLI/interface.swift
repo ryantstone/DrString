@@ -60,6 +60,9 @@ struct SharedCommandLineOptions: ParsableArguments {
 
     @Flag(help: "Override `align-after-colon` so that none is empty.")
     var noAlignAfterColon: Bool = false
+    
+    @Option(help: "Acl")
+    var acl: [ACL] = []
 }
 
 struct Main: ParsableCommand {
