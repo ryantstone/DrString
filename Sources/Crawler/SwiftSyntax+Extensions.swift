@@ -28,11 +28,58 @@ extension FunctionDeclSyntax {
             return FunctionParameterSyntax(syntax)?.parameter
         }
     }
+    
+    var acl: ACL {
+        return self.modifiers?
+            .flatMap(\.tokens)
+            .map { token in
+                switch token.tokenKind {
+                case .publicKeyword:
+                    return ACL.public
+                    
+                case .internalKeyword:
+                    return ACL.internal
+                    
+                case .privateKeyword:
+                    return ACL.private
+                    
+                case .fileprivateKeyword:
+                    return ACL.private
+                    
+                default:
+                    return ACL.internal
+                }
+            }.first ?? .internal
+    }
 }
 
 extension InitializerDeclSyntax {
     var `throws`: Bool {
         return self.throwsOrRethrowsKeyword != nil
+    }
+    
+    var acl: ACL {
+        self.modifiers?
+            .flatMap(\.tokens)
+            .map { token in
+                switch token.tokenKind {
+                case .publicKeyword:
+                    return ACL.public
+                    
+                case .internalKeyword:
+                    return ACL.internal
+                    
+                case .privateKeyword:
+                    return ACL.private
+                    
+                case .fileprivateKeyword:
+                    return ACL.private
+                    
+                default:
+                    return ACL.internal
+                }
+            }.first ?? .internal
+        
     }
 }
 

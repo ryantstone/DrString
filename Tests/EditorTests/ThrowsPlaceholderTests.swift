@@ -15,7 +15,8 @@ final class ThrowsPlaceholderTests: XCTestCase {
             details: .init(
                 throws: doesThrow,
                 returnType: nil,
-                parameters: []
+                parameters: [],
+                acl: .internal
             )
         ).format(
             columnLimit: nil,

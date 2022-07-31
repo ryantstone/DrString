@@ -34,11 +34,13 @@ public struct Documentable: Equatable, Codable {
         public let `throws`: Bool
         public let returnType: String?
         public let parameters: [Parameter]
+        public let acl: ACL
 
-        public init(throws: Bool, returnType: String?, parameters: [Parameter]) {
+        public init(throws: Bool, returnType: String?, parameters: [Parameter], acl: ACL) {
             self.throws = `throws`
             self.returnType = returnType
             self.parameters = parameters
+            self.acl = acl
         }
     }
 
@@ -62,3 +64,4 @@ public struct Documentable: Equatable, Codable {
         self.details = details
     }
 }
+

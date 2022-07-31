@@ -47,7 +47,8 @@ final class DocExtractor: SyntaxRewriter {
             details: Documentable.Details(
                 throws: node.throws,
                 returnType: node.returnType,
-                parameters: parameters)
+                parameters: parameters,
+                acl: node.acl)
         )
         self.findings.append(finding)
         return DeclSyntax(node)
@@ -69,7 +70,8 @@ final class DocExtractor: SyntaxRewriter {
             details: .init(
                 throws: node.throws,
                 returnType: nil,
-                parameters: parameters)
+                parameters: parameters,
+                acl: node.acl)
         )
         self.findings.append(finding)
         return DeclSyntax(node)
